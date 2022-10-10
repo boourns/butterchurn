@@ -6,29 +6,11 @@ import Utils from "./utils";
 import loadPresetFunctionsBuffer from "./assemblyscript/presetFunctions.ts";
 
 export default class Visualizer {
-  constructor(audioContext, canvas, opts) {
+  constructor(audioContext, gl, opts) {
     this.opts = opts;
     this.audio = new AudioProcessor(audioContext);
 
-    const vizWidth = opts.width || 1200;
-    const vizHeight = opts.height || 900;
-    if (window.OffscreenCanvas) {
-      this.internalCanvas = new OffscreenCanvas(vizWidth, vizHeight);
-    } else {
-      this.internalCanvas = document.createElement("canvas");
-      this.internalCanvas.width = vizWidth;
-      this.internalCanvas.height = vizHeight;
-    }
-
-    this.gl = this.internalCanvas.getContext("webgl2", {
-      alpha: false,
-      antialias: false,
-      depth: false,
-      stencil: false,
-      premultipliedAlpha: false,
-    });
-
-    this.outputGl = canvas.getContext('2d');
+    this.gl = gl;
 
     this.baseValsDefaults = {
       decay: 0.98,

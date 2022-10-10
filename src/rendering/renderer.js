@@ -77,7 +77,7 @@ export default class Renderer {
     this.compFrameBuffer = this.gl.createFramebuffer();
     this.compTexture = this.gl.createTexture();
 
-    this.anisoExt =
+    this.anisoExt = 
       this.gl.getExtension("EXT_texture_filter_anisotropic") ||
       this.gl.getExtension("MOZ_EXT_texture_filter_anisotropic") ||
       this.gl.getExtension("WEBKIT_EXT_texture_filter_anisotropic");
@@ -1176,12 +1176,12 @@ export default class Renderer {
     }
 
     if (this.outputFXAA) {
-      this.gl.bindTexture(this.gl.TEXTURE_2D, this.compTexture);
+  /*    this.gl.bindTexture(this.gl.TEXTURE_2D, this.compTexture);
       this.gl.generateMipmap(this.gl.TEXTURE_2D);
 
       this.bindFrambufferAndSetViewport(null, this.width, this.height);
       this.outputShader.renderQuadTexture(this.compTexture);
-    }
+    */}
   }
 
   launchSongTitleAnim(text) {
